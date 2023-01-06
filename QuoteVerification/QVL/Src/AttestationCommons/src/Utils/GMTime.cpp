@@ -47,8 +47,7 @@
 typedef int32_t	    int_fast32_t;
 typedef int64_t     int_fast64_t;
 #else
-typedef __int32_t	int_fast32_t;
-typedef __int64_t   int_fast64_t;
+#include <stdint.h>
 #endif
 
 static struct tm    tmGlobal;
