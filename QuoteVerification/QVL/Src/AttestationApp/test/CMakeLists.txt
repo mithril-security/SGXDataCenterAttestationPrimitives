@@ -29,7 +29,6 @@ set(SUBPROJECT_NAME ${PROJECT_NAME}_UT)
 
 enable_testing()
 
-hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
 file(GLOB SOURCE_FILES *.cpp)
@@ -46,5 +45,5 @@ target_link_libraries(${SUBPROJECT_NAME}
     GTest::gmock_main
 )
 
-install(TARGETS ${SUBPROJECT_NAME} DESTINATION bin)
+install(TARGETS ${SUBPROJECT_NAME} DESTINATION bin OPTIONAL)
 add_test(NAME ${SUBPROJECT_NAME} COMMAND <TARGET_FILE:${SUBPROJECT_NAME}>)

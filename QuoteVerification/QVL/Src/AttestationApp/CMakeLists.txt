@@ -100,7 +100,7 @@ endif()
 
 ########################################################################################################################
 
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(TARGETS ${PROJECT_NAME} DESTINATION bin OPTIONAL)
 install(DIRECTORY sampleData DESTINATION bin)
 
 if(BUILD_TESTS)

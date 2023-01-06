@@ -49,8 +49,7 @@ if(BUILD_DOCS)
     install(DIRECTORY ${DOXYGEN_BUILD_DIR}/ DESTINATION doc)
 endif()
 
-hunter_add_package(OpenSSL)
-find_package(OpenSSL 1.1.1 EXACT REQUIRED)
+find_package(OpenSSL REQUIRED)
 
 file(GLOB SOURCE_FILES src/*.cpp
         src/OpensslHelpers/*.cpp
@@ -98,8 +97,8 @@ else()
     set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Wl,--exclude-libs,ALL") # hide external libs symbols in shared object, do not add it for Enclave as we use LDS file here
 endif()
 
-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(TARGETS ${PROJECT_NAME}Static DESTINATION lib)
+install(TARGETS ${PROJECT_NAME} DESTINATION lib OPTIONAL)
+install(TARGETS ${PROJECT_NAME}Static DESTINATION lib OPTIONAL)
 install(DIRECTORY include/ DESTINATION include)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "QuoteVerification")

@@ -28,10 +28,8 @@ cmake_minimum_required(VERSION 3.12)
 
 set(SUBPROJECT_NAME ${PROJECT_NAME}_IT)
 
-hunter_add_package(OpenSSL)
-find_package(OpenSSL 1.1.1 EXACT REQUIRED)
+find_package(OpenSSL REQUIRED)
 
-hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
 enable_testing()
@@ -61,5 +59,5 @@ target_link_libraries(${SUBPROJECT_NAME}
     AttestationParsersStatic
 )
 
-install(TARGETS ${SUBPROJECT_NAME} DESTINATION bin)
+install(TARGETS ${SUBPROJECT_NAME} DESTINATION bin OPTIONAL)
 add_test(NAME ${SUBPROJECT_NAME} COMMAND <TARGET_FILE:${SUBPROJECT_NAME}>)

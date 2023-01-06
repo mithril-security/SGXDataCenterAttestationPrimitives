@@ -95,6 +95,7 @@ endif()
 set(QVL_BUILD_DIR "${CMAKE_SOURCE_DIR}/Build/${CMAKE_BUILD_TYPE}")
 set(QVL_DIST_DIR "${QVL_BUILD_DIR}/dist")
 
+set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY true)
 set(CMAKE_INSTALL_PREFIX ${QVL_DIST_DIR} CACHE PATH "default install path" FORCE )
 
 if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
@@ -142,21 +143,6 @@ endif ()
 
 #required to run CMake on windows
 set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
-
-#hunter has to be imported before 'project()'
-set(HUNTER_STATUS_DEBUG OFF) #set to 'ON' to see debug hunter logs
-#set(HUNTER_ROOT ${CMAKE_SOURCE_DIR}/ThirdParty/hunter) # in case of Hunter build problems
-#set(HUNTER_BINARY_DIR ${CMAKE_SOURCE_DIR}/ThirdParty/hunter) # in case of Hunter build problems
-
-option(HUNTER_NO_TOOLCHAIN_ID_RECALCULATION "No Toolchain-ID recalculation" ON)
-option(HUNTER_KEEP_PACKAGE_SOURCES "Keep third party sources" ON)
-
-include("${CMAKE_CURRENT_LIST_DIR}/ThirdParty/hunter/HunterGate.cmake")
-HunterGate(
-		URL "https://github.com/cpp-pm/hunter/archive/v0.23.316.tar.gz"
-		SHA1 "167a33c4cc398504826a1a3014ef66f9ccc35db3"
-		FILEPATH "${CMAKE_SOURCE_DIR}/ThirdParty/hunter/config.cmake"
-)
 
 project(SgxEcdsaAttestation)
 

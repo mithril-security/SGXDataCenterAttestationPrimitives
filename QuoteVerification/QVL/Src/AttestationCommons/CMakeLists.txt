@@ -28,8 +28,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(AttestationCommons CXX)
 
-hunter_add_package(OpenSSL)
-find_package(OpenSSL 1.1.1 EXACT REQUIRED)
+find_package(OpenSSL REQUIRED)
 
 file(GLOB SOURCE_FILES src/*.cpp
         src/Utils/*.cpp
@@ -52,7 +51,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
         OpenSSL::Crypto
 )
 
-target_link_libraries(${PROJECT_NAME}Static PUBLIC
+target_link_libraries(${PROJECT_NAME}Static PUBLIC 
         OpenSSL::SSL
         OpenSSL::Crypto
 )
@@ -102,8 +101,8 @@ else()
     set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Wl,--exclude-libs,ALL") # hide external libs symbols in shared object, do not add it for Enclave as we use LDS file here
 endif()
 
-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(TARGETS ${PROJECT_NAME}Static DESTINATION lib)
+install(TARGETS ${PROJECT_NAME} DESTINATION lib OPTIONAL)
+install(TARGETS ${PROJECT_NAME}Static DESTINATION lib OPTIONAL)
 
 if(BUILD_TESTS)
     add_subdirectory(test)
