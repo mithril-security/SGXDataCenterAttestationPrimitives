@@ -29,9 +29,8 @@ project(ThirdParty)
 include(ExternalProject)
 
 add_library(rapidjson INTERFACE)
-file(GLOB RAPIDJSON_SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/rapidjson/include/rapidjson/*.h)
-target_sources(rapidjson INTERFACE ${RAPIDJSON_SOURCE_FILES})
-target_include_directories(rapidjson SYSTEM INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/rapidjson/include/")
+target_include_directories(rapidjson SYSTEM INTERFACE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/rapidjson/include>")
+install(TARGETS rapidjson EXPORT Qvl OPTIONAL)
 
 add_library(argtable3 STATIC ${CMAKE_CURRENT_SOURCE_DIR}/argtable3/argtable3.c)
 target_include_directories(argtable3 SYSTEM PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/argtable3/)

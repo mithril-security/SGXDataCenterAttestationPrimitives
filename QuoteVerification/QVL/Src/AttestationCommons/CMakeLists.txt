@@ -102,7 +102,7 @@ else()
 endif()
 
 install(TARGETS ${PROJECT_NAME} DESTINATION lib OPTIONAL)
-install(TARGETS ${PROJECT_NAME}Static DESTINATION lib OPTIONAL)
+install(TARGETS ${PROJECT_NAME}Static EXPORT Qvl DESTINATION lib OPTIONAL)
 
 if(BUILD_TESTS)
     add_subdirectory(test)

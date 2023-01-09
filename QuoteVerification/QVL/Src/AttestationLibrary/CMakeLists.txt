@@ -90,6 +90,10 @@ target_link_libraries(${PROJECT_NAME}Static PRIVATE
         OpenSSL::Crypto
         )
 
+target_include_directories(${PROJECT_NAME}Static PUBLIC
+        $<INSTALL_INTERFACE:include/>
+)
+
 if(MSVC)
     target_compile_definitions(${PROJECT_NAME}Static PUBLIC ATTESTATIONLIBRARY_STATIC)
     target_compile_definitions(${PROJECT_NAME} PUBLIC _ATTESTATIONLIBRARY_EXPORTS)
@@ -98,7 +102,7 @@ else()
 endif()
 
 install(TARGETS ${PROJECT_NAME} DESTINATION lib OPTIONAL)
-install(TARGETS ${PROJECT_NAME}Static DESTINATION lib OPTIONAL)
+install(TARGETS ${PROJECT_NAME}Static EXPORT Qvl DESTINATION lib OPTIONAL)
 install(DIRECTORY include/ DESTINATION include)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "QuoteVerification")

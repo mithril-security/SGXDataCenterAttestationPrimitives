@@ -360,3 +360,14 @@ if (BUILD_TESTS)
 		endif()
 	endif ()
 endif ()
+
+
+install(EXPORT Qvl
+        FILE QvlTargets.cmake
+        NAMESPACE Qvl::
+        DESTINATION  lib/cmake/Qvl
+)
+
+install(FILES "${CMAKE_CURRENT_LIST_DIR}/QvlConfig.cmake"
+        DESTINATION lib/cmake/Qvl
+)
